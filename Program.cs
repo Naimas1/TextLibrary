@@ -1,10 +1,28 @@
-﻿namespace TextLibrary
+using System;
+using System.Linq;
+
+namespace TextLibrary
 {
-    internal class Program
+    public static class TextUtils
     {
-        static void Main(string[] args)
+        public static bool IsPalindrome(string text)
         {
-            Console.WriteLine("Hello, World!");
+            string normalizedText = text.ToLower().Replace(" ", "");
+            string reversedText = new string(normalizedText.Reverse().ToArray());
+            return normalizedText == reversedText;
+        }
+
+        public static int CountSentences(string text)
+        {
+            char[] separators = { '.', '?', '!' };
+            return text.Split(separators, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
+        public static string ReverseString(string text)
+        {
+            char[] charArray = text.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }
